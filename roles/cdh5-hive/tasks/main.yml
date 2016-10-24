@@ -1,6 +1,6 @@
 ---
 - name: install hive server pkgs
-  yum: name={{ item }}-{{ version['hive'] }} state=present
+  yum: name={{ item }} state=present
   with_items:
   - hive
   - hive-metastore
@@ -96,6 +96,13 @@
   shell: creates={{ item }} sudo -u hdfs hadoop fs -mkdir -p /user/hive/warehouse; sudo -u hdfs hadoop fs -chown -R hive /user/hive; sudo -u hdfs hadoop fs -chmod -R 1777 /user/hive && touch {{ item }}
   with_items:
   - /var/hive/.status/warehouse.created
+  tags:
+  - cdh5-hive
+
+- name: touch the file .hivehistory
+  shell: touch /var/lib/hive/.hivehistory
+  with_items:
+    - /var/hive/.status/hivehistory.created
   tags:
   - cdh5-hive
 

@@ -110,7 +110,7 @@
 - name: create symbolically links for hadoop-lzo
   file: src=/usr/lib/hadoop/lib/{{ item }} dest=/var/lib/oozie/{{ item }} owner=oozie group=oozie state=link
   with_items:
-  - hadoop-lzo-0.4.15-gplextras5.0.0-beta-2-SNAPSHOT.jar
+  - hadoop-lzo-0.4.15-cdh5.8.2.jar
   - hadoop-lzo.jar
   tags:
   - cdh5-oozie
