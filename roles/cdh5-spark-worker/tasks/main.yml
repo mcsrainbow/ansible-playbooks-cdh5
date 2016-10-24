@@ -5,3 +5,4 @@
   - spark-worker
   tags:
   - cdh5-spark-worker
+  ignore_errors: yes

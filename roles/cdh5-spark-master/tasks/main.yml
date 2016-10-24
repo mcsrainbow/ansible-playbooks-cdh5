@@ -5,3 +5,5 @@
   - spark-master
   tags:
   - cdh5-spark-master
+  ignore_errors: yes
+#  failed_when: "'FAILED' in stdout"

@@ -56,7 +56,12 @@
   - cdh5-base
 
 - name: download jdk-8u101-linux-x64.rpm
-  get_url: url=http://download.oracle.com/otn-pub/java/jdk/8u101-b13/jdk-8u101-linux-x64.rpm?AuthParam=1471950710_190136153c7bc6c0dcc6c6954b2c2628 dest=/root/deploy/hadoop/jdk-8u101-linux-x64.rpm headers='Cookie:oraclelicense=accept-securebackup-cookie;' mode=0755
+  get_url:
+    url:  'http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.rpm'
+    dest: '/root/deploy/hadoop/jdk-8u101-linux-x64.rpm'
+    headers: "Cookie:' gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'"
+    validate_certs: "no"
+    mode: '0755'
   tags:
   - cdh5-base
   - cdh5-jdk
