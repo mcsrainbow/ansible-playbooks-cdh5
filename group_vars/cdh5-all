@@ -20,10 +20,10 @@ version:
 
 ansible_path: "{{ lookup('env','ANSIBLE_WORK_DIR') }}"
 
-tl_domain: dev.cd5.iw.com
+tl_domain: qa.cd5.iw.com
 
 # core-site_xml
-nameservice_id: hadoop-dev-cluster
+nameservice_id: hadoop-qa-cluster
 fs_trash_interval: 1440
 
 # zoo_cfg
