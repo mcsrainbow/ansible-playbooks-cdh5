@@ -1,7 +1,9 @@
-CREATE DATABASE IF NOT EXISTS metastore;
-USE metastore;
-SOURCE /usr/lib/hive/scripts/metastore/upgrade/mysql/hive-schema-0.12.0.mysql.sql;
+CREATE DATABASE IF NOT EXISTS metastore DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
+USE metastore;
+
+SOURCE /usr/lib/hive/scripts/metastore/upgrade/mysql/hive-schema-1.1.0.mysql.sql;
+SOURCE /usr/lib/hive/scripts/metastore/upgrade/mysql/hive-txn-schema-0.13.0.mysql.sql;
 {% for host in hive_mysql_hosts %}
 CREATE USER 'hive'@'{{ host }}' IDENTIFIED BY '{{ hive_mysql_passwd }}';
 REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'hive'@'{{ host }}';
