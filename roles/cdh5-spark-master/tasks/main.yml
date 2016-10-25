@@ -7,3 +7,10 @@
   - cdh5-spark-master
   ignore_errors: yes
 #  failed_when: "'FAILED' in stdout"
+- name: start spark history services
+  service: name={{ item }} state=started
+  with_items:
+  - spark-history-server
+  tags:
+  - cdh5-spark-master
+  ignore_errors: yes
