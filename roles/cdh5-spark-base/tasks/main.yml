@@ -12,6 +12,7 @@
   - spark-core
   - spark-master
   - spark-worker
+  - spark-history-server
   - spark-python
   tags:
   - cdh5-spark-base
@@ -24,6 +25,7 @@
   - metrics.properties.template
   - slaves
   - spark-env.sh
+  - spark-defautls.conf
   - spark-env.sh.template
   tags:
   - cdh5-spark-base
