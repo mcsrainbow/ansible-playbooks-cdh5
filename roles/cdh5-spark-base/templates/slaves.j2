@@ -1,2 +1,4 @@
 # A Spark Worker will be started on each of the machines listed below.
-localhost
+{% for host in groups['cdh5-spark-worker'] %}
+{{ host }}.{{ tl_domain }}
+{% endfor %}

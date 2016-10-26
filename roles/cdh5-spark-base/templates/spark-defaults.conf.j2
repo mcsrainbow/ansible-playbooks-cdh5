@@ -19,10 +19,10 @@
 # This is useful for setting default environmental settings.
 
 # Example:
-spark.master=spark://{{ groups['cdh5-spark-master'] | join() }}.{{ tl_domain }}:7077
-park.eventLog.enabled=true
-spark.eventLog.dir=hdfs://{{ groups['cdh5-namenode-primary'] | join() }}.{{ tl_domain }}:8020/user/spark/logs
-spark.yarn.historyServer.address={{ groups['cdh5-spark-master'] | join() }}.{{ tl_domain }}:18088
-spark.serializer=org.apache.spark.serializer.KryoSerializer
+spark.master                        spark://{{ groups['cdh5-spark-master'] | join() }}.{{ tl_domain }}:7077
+park.eventLog.enabled               true
+spark.eventLog.dir                  hdfs://{{ groups['cdh5-namenode-primary'] | join() }}.{{ tl_domain }}:8020/user/spark/logs
+spark.yarn.historyServer.address    {{ groups['cdh5-spark-master'] | join() }}.{{ tl_domain }}:18088
+spark.serializer                    org.apache.spark.serializer.KryoSerializer
 # spark.driver.memory              5g
 # spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"

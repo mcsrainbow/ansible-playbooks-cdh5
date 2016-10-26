@@ -5,19 +5,24 @@
   - spark-master
   tags:
   - cdh5-spark-master
-- name: create needed directories for hive
-  file: name={{ item }} state=directory owner=hive group=hive mode=0700
+- name: create needed directories for spark
+  file: name={{ item }} state=directory owner=spark group=spark mode=0700
   with_items:
   - /var/spark
   - /var/spark/.status
+  register: spark_env_directory
+  ignore_errors: yes
+
   tags:
   - cdh5-hive
+
 - name: create /user/spark/applicationHistory
   shell: touch /var/spark/.status/hivehistory.created && sudo -u hdfs hadoop fs -mkdir /user/spark && sudo -u hdfs hadoop fs -mkdir /user/spark/applicationHistory && sudo -u hdfs hadoop fs -chown -R spark:spark /user/spark && sudo -u hdfs hadoop fs -chmod 1777 /user/spark/applicationHistory
   tags:
   - cdh5-spark-master
   with_items:
     - /var/spark/.status/applicationHistory.created
+  when: spark_env_directory|changed
 
 - name: start spark history services
   service: name={{ item }} state=started
