@@ -24,7 +24,8 @@
 ### === IMPORTANT ===
 ### Change the following to specify a real cluster's Master host
 ###
-export STANDALONE_SPARK_MASTER_HOST=`hostname`
+#export STANDALONE_SPARK_MASTER_HOST=`hostname`
+export STANDALONE_SPARK_MASTER_HOST={{ groups['cdh5-spark-master'] | join() }}.{{ tl_domain }}
 
 #export SPARK_MASTER_IP=$STANDALONE_SPARK_MASTER_HOST
 export SPARK_MASTER_IP={{ groups['cdh5-spark-master'] | join() }}.{{ tl_domain }}
