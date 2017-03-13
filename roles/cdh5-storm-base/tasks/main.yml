@@ -48,3 +48,11 @@
   file: src=/usr/local/storm/bin/storm dest=/usr/bin/storm state=link force=true
   tags:
   - cdh5-storm-base
+
+- name: copy storm conf files
+  template: src={{ item }}.j2 dest=/etc/storm/conf/{{ item }}  mode=0644
+  with_items:
+  - storm.yaml
+  tags:
+  - cdh5-storm-base
+  - cdh5-storm-base-conf
