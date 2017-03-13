@@ -48,6 +48,10 @@ storm.local.dir: "/var/lib/storm"
 #     - "server1"
 #     - "server2"
 
+drpc.servers:
+{% for host in groups['cdh5-storm-worker'] %}
+    - "{{ host }}.{{ tl_domain }}"
+{% endfor %}
 ## Metrics Consumers
 # topology.metrics.consumer.register:
 #   - class: "org.apache.storm.metric.LoggingMetricsConsumer"
