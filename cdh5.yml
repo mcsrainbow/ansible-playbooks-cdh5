@@ -80,3 +80,16 @@
 - hosts: cdh5-spark-worker
   roles:
   - cdh5-spark-worker
+
+- hosts: cdh5-storm
+  roles:
+  - cdh5-storm-base
+
+- hosts: cdh5-storm-master
+  roles:
+  - cdh5-storm-master
+
+- hosts: cdh5-storm-worker
+  roles:
+  - cdh5-storm-worker
+

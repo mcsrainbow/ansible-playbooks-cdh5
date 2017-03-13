@@ -74,3 +74,16 @@ node112
 node112
 node113
 node114
+
+
+[cdh5-storm:children]
+cdh5-storm-master
+cdh5-storm-worker
+
+[cdh5-storm-master]
+node112
+
+[cdh5-storm-worker]
+node112
+node113
+node114
