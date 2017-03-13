@@ -19,6 +19,12 @@
 #  tags:
 #  - cdh5-storm-base
 
+
+- name: create data dir
+  file: path=/var/lib/storm state=directory force=true mode=u+rwx
+  tags:
+  - cdh5-storm-base
+
 - name: link storm pkgs[1]
   file: src=/usr/share/hadoop/apache-storm-1.0.3 dest=/usr/local/storm state=link
   tags:

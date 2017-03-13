@@ -28,6 +28,9 @@ storm.zookeeper.servers:
 
 nimbus.seeds: [{% for host in groups['cdh5-storm-master'] %}"{{ host }}.{{ tl_domain }}"{% endfor %}]
 
+
+storm.local.dir: "/var/lib/storm"
+
 #
 # ##### These may optionally be filled in:
 #
