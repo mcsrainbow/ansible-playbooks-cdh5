@@ -1,0 +1,64 @@
+---
+- name: download storm install package
+  get_url:
+    url:  'http://mirror.bit.edu.cn/apache/storm/apache-storm-1.0.3/apache-storm-1.0.3.tar.gz'
+    dest: '/root/deploy/hadoop/apache-storm-1.0.3.tar.gz'
+    mode: '0755'
+  register: storm_download
+  tags:
+  - cdh5-storm-base
+
+- name: install storm pkgs
+  unarchive:
+    src: /root/deploy/hadoop/apache-storm-1.0.3.tar.gz
+    dest: /usr/share/hadoop/
+    tags:
+    - cdh5-storm-base
+#- name: install storm pkgs
+#  shell: tar -zxvf /root/deploy/hadoop/apache-storm-1.0.3.tar.gz -C /usr/share/hadoop/ #; chown -R storm /usr/share/hadoop/apache-storm-1.0.3
+#  tags:
+#  - cdh5-storm-base
+
+
+- name: create data dir
+  file: path=/var/lib/storm state=directory force=true mode=u+rwx
+  tags:
+  - cdh5-storm-base
+
+- name: link storm pkgs[1]
+  file: src=/usr/share/hadoop/apache-storm-1.0.3 dest=/usr/local/storm state=link
+  tags:
+  - cdh5-storm-base
+
+- name: link storm pkgs[2]
+  file: path=/etc/storm/ state=directory force=true
+  tags:
+  - cdh5-storm-base
+
+- name: link storm pkgs[3]
+  file: src=/usr/local/storm/conf dest=/etc/storm/conf.dist state=link force=true
+  tags:
+  - cdh5-storm-base
+
+- name: link storm pkgs[4]
+  file: src=/etc/storm/conf.dist dest=/etc/alternatives/storm-conf state=link force=true
+  tags:
+  - cdh5-storm-base
+
+- name: link storm pkgs[5]
+  file: src=/etc/alternatives/storm-conf dest=/etc/storm/conf state=link force=true
+  tags:
+  - cdh5-storm-base
+
+- name: link storm pkgs[6]
+  file: src=/usr/local/storm/bin/storm dest=/usr/bin/storm state=link force=true
+  tags:
+  - cdh5-storm-base
+
+- name: copy storm conf files
+  template: src={{ item }}.j2 dest=/etc/storm/conf/{{ item }}  mode=0644
+  with_items:
+  - storm.yaml
+  tags:
+  - cdh5-storm-base
+  - cdh5-storm-base-conf

@@ -16,61 +16,74 @@ cdh5-namenode-primary
 cdh5-namenode-backup
 
 [cdh5-namenode-primary]
-node115
+node112
 
 [cdh5-namenode-backup]
-node116
+node113
 
 [cdh5-journalnode]
-node115
-node116
-node117
+node112
+node113
+node114
 
 [cdh5-zookeeperserver]
-node115 zoo_id=1
-node116 zoo_id=2
-node117 zoo_id=3
+node112 zoo_id=1
+node113 zoo_id=2
+node114 zoo_id=3
 
 [cdh5-resourcemanager]
-node115
+node112
 
 [cdh5-httpfs]
-node116
+node113
 
 [cdh5-hbase:children]
 cdh5-hbase-master
 cdh5-hbase-regionserver
 
 [cdh5-hbase-master]
-node116
+node113
 
 [cdh5-hbase-regionserver]
-node115
-node116
-node117
+node112
+node113
+node114
 
 [cdh5-slave]
-node115
-node116
-node117
+node112
+node113
+node114
 
 [cdh5-hive]
-node115
+node112
 
 [cdh5-oozie]
-node115
+node112
 
 [cdh5-pig]
-node115
+node112
 
 [cdh5-spark:children]
 cdh5-spark-master
 cdh5-spark-worker
 
 [cdh5-spark-master]
-node115
+node112
 
 [cdh5-spark-worker]
-node115
-node116
-node117
+node112
+node113
+node114
+
+
+[cdh5-storm:children]
+cdh5-storm-master
+cdh5-storm-worker
+
+[cdh5-storm-master]
+node112
+
+[cdh5-storm-worker]
+node112
+node113
+node114

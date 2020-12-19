@@ -55,8 +55,14 @@
   tags:
   - cdh5-base
 
-- name: download jdk-6u35-linux-x64-rpm.bin
-  get_url: url=http://{{ repo_server }}/repo/misc/jdk-6u45-linux-x64-rpm.bin dest=/root/deploy/hadoop/jdk-6u45-linux-x64-rpm.bin mode=0755
+- name: download jdk-8u101-linux-x64.rpm
+  get_url:
+    url:  'http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.rpm'
+    dest: '/root/deploy/hadoop/jdk-8u101-linux-x64.rpm'
+    headers: "Cookie:' gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'"
+    validate_certs: "no"
+    mode: '0755'
+  register: java_download
   tags:
   - cdh5-base
   - cdh5-jdk
@@ -64,14 +70,15 @@
 - name: remove openjdk pkgs
   yum: name={{ item }} state=absent
   with_items:
-  - java-1.6.0-openjdk-devel
-  - java-1.6.0-openjdk
+  - java-1.8.0-openjdk-devel
+  - java-1.8.0-openjdk
   tags:
   - cdh5-base
   - cdh5-jdk
 
-- name: run jdk-6u45-linux-x64-rpm.bin
-  shell: /root/deploy/hadoop/jdk-6u45-linux-x64-rpm.bin creates=/usr/java/jdk1.6.0_45
+- name: run jdk-8u45-linux-x64.rpm
+  shell: rpm -ivh --prefix=/usr/java/ /root/deploy/hadoop/jdk-8u101-linux-x64.rpm --force
+  when: java_download|changed
   tags:
   - cdh5-base
   - cdh5-jdk
@@ -138,6 +145,7 @@
   - yarn-site.xml
   - yarn-env.sh
   - slaves
+  - datanodes.exclude
   - capacity-scheduler.xml
   - configuration.xsl
   - container-executor.cfg
